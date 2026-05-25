@@ -1,8 +1,14 @@
 <h1 align="center">ThoughtFold: Folding Reasoning Chains via Introspective Preference Learning</h1>
 
 <p align="center">
-<em>Folding redundant reasoning chains via introspective preference learning for efficient LRM inference.</em><br>
-(Accepted by ICML 2026)
+<em>Folding redundant reasoning chains via introspective preference learning for efficient LRM inference.</em>
+(<strong>🎉🎉🎉 Accepted by ICML 2026</strong>)
+</p>
+
+<p align="center">
+  📄 <a href="">Paper</a>
+  &nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
+  🤗 <a href="">Dataset</a>
 </p>
 
 ---
