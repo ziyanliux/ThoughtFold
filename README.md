@@ -7,8 +7,6 @@
 
 <p align="center">
   📄 <a href="">Paper</a>
-  &nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
-  🤗 <a href="">Dataset</a>
 </p>
 
 ---
@@ -101,3 +99,13 @@ binary_search_config = {
 
 ---
 
+## 📌 Citation
+
+```bibtex
+@inproceedings{liu2026thoughtfold,
+    title={ThoughtFold: Folding Reasoning Chains via Introspective Preference Learning},
+    author={},
+    booktitle={Proceedings of the 43rd International Conference on Machine Learning (ICML)},
+    year={2026}
+}
+```
