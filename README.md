@@ -1,17 +1,8 @@
 <h1 align="center">ThoughtFold: Folding Reasoning Chains via Introspective Preference Learning</h1>
 
 <p align="center">
-Ziyan Liu, Xueda Shen, Yuzhe Gu, Songyang Gao, Kuikun Liu, Guangran Cheng, Chengqi Lyu, Dahua Lin, Wenwei Zhang, Kai Chen
-</p>
-
-<p align="center">
-Shanghai Artificial Intelligence Laboratory &nbsp;|&nbsp; University of Science and Technology of China
-</p>
-
-<p align="center"><b>Accepted by ICML 2026</b></p>
-
-<p align="center">
-📄 <a href="">Paper</a> &nbsp;|&nbsp; 🤗 <a href="">Dataset</a>
+<em>Folding redundant reasoning chains via introspective preference learning for efficient LRM inference.</em><br>
+(Accepted by ICML 2026)
 </p>
 
 ---
@@ -101,24 +92,6 @@ binary_search_config = {
 }
 ```
 
-### Run Training
-
-```bash
-python -m thoughtfold.thoughtfold_train <config.py> \
-    --ray-cluster-url ray://<master>:10001 \
-    --work-dir ./work_dir \
-    --num-workers 8
-```
 
 ---
 
-## 📌 Citation
-
-```bibtex
-@inproceedings{liu2026thoughtfold,
-    title={ThoughtFold: Folding Reasoning Chains via Introspective Preference Learning},
-    author={Liu, Ziyan and Shen, Xueda and Gu, Yuzhe and Gao, Songyang and Liu, Kuikun and Cheng, Guangran and Lyu, Chengqi and Lin, Dahua and Zhang, Wenwei and Chen, Kai},
-    booktitle={Proceedings of the 43rd International Conference on Machine Learning (ICML)},
-    year={2026}
-}
-```
