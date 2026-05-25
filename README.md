@@ -1,40 +1,66 @@
-<h1 align="center">ThoughtFold<br><small>Efficient CoT Optimization via Binary Search and Attention-Guided Pruning</small></h1>
+<h1 align="center">ThoughtFold: Folding Reasoning Chains via Introspective Preference Learning</h1>
 
-<p align="center"><em>Online DPO Training for Chain-of-Thought Length Reduction in Reasoning Models</em></p>
+<p align="center">
+Ziyan Liu, Xueda Shen, Yuzhe Gu, Songyang Gao, Kuikun Liu, Guangran Cheng, Chengqi Lyu, Dahua Lin, Wenwei Zhang, Kai Chen
+</p>
+
+<p align="center">
+Shanghai Artificial Intelligence Laboratory &nbsp;|&nbsp; University of Science and Technology of China
+</p>
 
 <p align="center"><b>Accepted by ICML 2026</b></p>
+
+<p align="center">
+📄 <a href="">Paper</a> &nbsp;|&nbsp; 🤗 <a href="">Dataset</a>
+</p>
 
 ---
 
 ## 🚀 Motivation
 
-Long Chain-of-Thought (CoT) reasoning improves accuracy but incurs substantial inference cost. Naively truncating or distilling CoT often degrades correctness.
+Large Reasoning Models (LRMs) suffer from **overthinking** — since CoTs naturally contain trial and errors, mainstream RLVR approaches choose outcome-correct CoT trajectories for memorization, causing the redundant explorations in long CoTs to be inevitably reinforced.
 
-> **ThoughtFold** finds the shortest CoT that preserves correctness — *online, during RL training* — and constructs masked DPO pairs to teach the model to reason more concisely without losing accuracy.
+> RLVR (left) memorizes these steps by uniformly reinforcing the entire CoT. In contrast, **ThoughtFold** (right) identifies and penalizes redundant steps, folding the reasoning chain by encouraging direct bridging between essential reasoning segments.
+
+<p align="center"><img src="figs/method.png" width="90%"></p>
 
 ---
 
 ## 💡 Key Idea
 
-ThoughtFold performs **two-phase CoT pruning** within the GRPO training loop:
+**ThoughtFold** integrates outcome-based RLVR with fine-grained preference learning for efficient reasoning. Unlike vanilla RLVR strategies that uniformly reinforce all steps in a correct trajectory, our method performs fine-grained preference learning by identifying and explicitly fold redundant thoughts.
 
-- **Phase 1 — Tail Truncation (Binary Search):** For each correct sample, binary search on CoT length to find the shortest prefix that still produces correct answers above a confidence threshold.
-- **Phase 2 — Internal Folding (Attention-Guided):** Use attention scores to identify and remove low-importance reasoning sentences, then binary search on the retention ratio.
+Specifically, ThoughtFold employs an introspective strategy for redundancy identification:
 
-Each pruning iteration produces a **Masked DPO pair**:
-- ✅ **Case 1 (Pruned & Correct):** shorter response = chosen, longer response = rejected. Loss is applied only to the pruned region.
-- ❌ **Case 2 (Overjump):** over-pruned incorrect response = rejected, last correct response = chosen. Loss targets the answer portion.
+- **Outcome-Correct Trajectory → Spectrum of Sub-trajectories:** Starting with an outcome-correct trajectory, we iteratively remove specific reasoning segments to verify if the model can still derive the correct answer.
+- **Concise Successes vs. Over-simplified Failures:** This yields a spectrum distinguishing between concise successes (redundancy successfully removed) and over-simplified failures (essential logic broken).
+- **Masked Preference Optimization:** Based on this spectrum, ThoughtFold applies a mask-based fine-grained preference optimization to explicitly penalize redundant explorations and encourage the model to directly bridge essential logical steps.
 
 ---
 
 ## 🧩 Method
 
-<p align="center"><img src="../figs/method_overview.png" width="90%"></p>
+ThoughtFold performs two-phase introspective pruning within the RLVR training loop:
 
-1. **Generate & Judge** — Standard GRPO rollout with reward verification.
-2. **Binary Search (Phase 1)** — For correct samples, iteratively halve CoT length, validate with repeated sampling + judging, and track the shortest correct prefix.
-3. **Attention Pruning (Phase 2)** — Obtain per-token attention scores for the shortest response, aggregate to sentence level, and binary search on top-k retention ratio.
-4. **DPO Training** — Constructed masked DPO pairs are shuffled with GRPO samples and trained jointly with a hybrid loss.
+**Phase 1 — Tail Truncation (Binary Search on CoT Length)**
+
+For each correct sample, binary search on CoT length to find the shortest prefix that still produces correct answers above a confidence threshold.
+
+**Phase 2 — Internal Folding (Attention-Guided Sentence Pruning)**
+
+Use attention scores to compute per-sentence importance, then binary search on the top-k retention ratio to identify and remove low-importance reasoning sentences.
+
+**DPO Pair Construction:**
+
+Each pruning iteration produces a masked DPO pair:
+- ✅ **Concise Success:** shorter correct response = chosen, longer response = rejected. Loss applied only to the pruned (redundant) region.
+- ❌ **Over-simplified Failure:** over-pruned incorrect response = rejected, last correct response = chosen. Loss targets the answer portion to encourage bridging.
+
+---
+
+## 📊 Results
+
+ThoughtFold significantly enhances reasoning efficiency. It reduces the average token consumption of DeepSeek-R1-Distill-Qwen-7B by approximately **56%** while maintaining state-of-the-art accuracy, surpassing recent efficient reasoning works.
 
 ---
 
@@ -47,7 +73,7 @@ thoughtfold/
 ├── thoughtfold_train.py             # ThoughtFold entry (DPO + Binary Search)
 └── binsearch/
     ├── __init__.py
-    ├── binary_search_environment.py # Core algorithm: two-phase pruning
+    ├── binary_search_environment.py # Core: two-phase introspective pruning
     ├── binary_search_trainer.py     # DPO Trainer with masked label construction
     └── utils.py
 ```
@@ -58,7 +84,7 @@ thoughtfold/
 
 ### Configuration
 
-Key binary search parameters in config file:
+Key parameters in config file:
 
 ```python
 enable_binary_search = True
@@ -89,10 +115,10 @@ python -m thoughtfold.thoughtfold_train <config.py> \
 ## 📌 Citation
 
 ```bibtex
-@inproceedings{thoughtfold2026,
-    title={ThoughtFold: Efficient Chain-of-Thought Optimization via Binary Search and Attention-Guided Pruning},
-    author={},
-    booktitle={International Conference on Machine Learning (ICML)},
+@inproceedings{liu2026thoughtfold,
+    title={ThoughtFold: Folding Reasoning Chains via Introspective Preference Learning},
+    author={Liu, Ziyan and Shen, Xueda and Gu, Yuzhe and Gao, Songyang and Liu, Kuikun and Cheng, Guangran and Lyu, Chengqi and Lin, Dahua and Zhang, Wenwei and Chen, Kai},
+    booktitle={Proceedings of the 43rd International Conference on Machine Learning (ICML)},
     year={2026}
 }
 ```
