@@ -17,7 +17,7 @@ Large Reasoning Models (LRMs) suffer from **overthinking** — since CoTs natura
 
 > RLVR (left) memorizes these steps by uniformly reinforcing the entire CoT. In contrast, **ThoughtFold** (right) identifies and penalizes redundant steps, folding the reasoning chain by encouraging direct bridging between essential reasoning segments.
 
-<p align="center"><img src="figs/method.png" width="90%"></p>
+<p align="center"><img src="figs/fig1.jpg" width="90%"></p>
 
 ---
 
