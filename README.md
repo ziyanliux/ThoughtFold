@@ -17,7 +17,7 @@ Large Reasoning Models (LRMs) suffer from **overthinking** — since CoTs natura
 
 > RLVR (left) memorizes these steps by uniformly reinforcing the entire CoT. In contrast, **ThoughtFold** (right) identifies and penalizes redundant steps, folding the reasoning chain by encouraging direct bridging between essential reasoning segments.
 
-<p align="center"><img src="figs/fig1.jpg" width="90%"></p>
+<p align="center"><img src="figs/fig1.png" width="90%"></p>
 
 ---
 
@@ -34,6 +34,8 @@ Specifically, ThoughtFold employs an introspective strategy for redundancy ident
 ---
 
 ## 🧩 Method
+
+<p align="center"><img src="figs/fig2.png" width="90%"></p>
 
 ThoughtFold performs two-phase introspective pruning within the RLVR training loop:
 
