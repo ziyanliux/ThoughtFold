@@ -102,10 +102,13 @@ binary_search_config = {
 ## 📌 Citation
 
 ```bibtex
-@inproceedings{liu2026thoughtfold,
-    title={ThoughtFold: Folding Reasoning Chains via Introspective Preference Learning},
-    author={},
-    booktitle={Proceedings of the 43rd International Conference on Machine Learning (ICML)},
-    year={2026}
+@misc{liu2026thoughtfoldfoldingreasoningchains,
+      title={ThoughtFold: Folding Reasoning Chains via Introspective Preference Learning}, 
+      author={Ziyan Liu and Xueda Shen and Yuzhe Gu and Songyang Gao and Kuikun Liu and Guangran Cheng and Chengqi Lyu and Dahua Lin and Wenwei Zhang and Kai Chen},
+      year={2026},
+      eprint={2606.03503},
+      archivePrefix={arXiv},
+      primaryClass={cs.AI},
+      url={https://arxiv.org/abs/2606.03503}, 
 }
 ```
