@@ -7,6 +7,8 @@
 
 <p align="center">
   📄 <a href="https://arxiv.org/pdf/2606.03503">Paper</a>
+  &nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
+  📜 <a href="./LICENSE">MIT License</a>
 </p>
 
 ---
