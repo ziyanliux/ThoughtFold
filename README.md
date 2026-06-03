@@ -6,7 +6,7 @@
 </p>
 
 <p align="center">
-  📄 <a href="">Paper</a>
+  📄 <a href="https://arxiv.org/pdf/2606.03503">Paper</a>
 </p>
 
 ---
