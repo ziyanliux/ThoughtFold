@@ -6,9 +6,15 @@
 </p>
 
 <p align="center">
-  📄 <a href="https://arxiv.org/pdf/2606.03503">Paper</a>
-  &nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
-  📜 <a href="./LICENSE">MIT License</a>
+  <a href="https://arxiv.org/pdf/2606.03503">
+    <img src="https://img.shields.io/badge/arXiv-2606.03503-b31b1b.svg" alt="arXiv">
+  </a>
+  <a href="https://huggingface.co/papers/2606.03503">
+    <img src="https://img.shields.io/badge/Hugging%20Face-Paper-yellow?logo=huggingface" alt="Hugging Face Paper">
+  </a>
+  <a href="./LICENSE">
+    <img src="https://img.shields.io/badge/License-MIT-green.svg" alt="MIT License">
+  </a>
 </p>
 
 ---
