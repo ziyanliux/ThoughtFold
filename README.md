@@ -11,6 +11,7 @@
   <a href="./LICENSE"><img src="https://img.shields.io/badge/License-MIT-green.svg" alt="MIT License"></a>
 </p>
 
+> 🚧 **Work in Progress:** This repository is currently being organized, and an enhanced version of ThoughtFold is under active development. Discussions and feedback are very welcome.
 ---
 
 ## 🚀 Motivation
