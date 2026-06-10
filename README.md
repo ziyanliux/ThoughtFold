@@ -82,6 +82,12 @@ thoughtfold/
 
 ## ⚙️ Usage
 
+### Training Framework
+
+ThoughtFold is built on top of the [XTuner](https://github.com/InternLM/xtuner) training engine. We extend XTuner's training pipeline with introspective binary search, two-phase reasoning-chain pruning, and masked preference optimization, enabling fine-grained folding of redundant reasoning segments within the RLVR training loop.
+The current implementation follows the XTuner-style training structure while adding ThoughtFold-specific modules for sub-trajectory validation, sentence-level pruning, and masked DPO pair construction.
+
+
 ### Configuration
 
 Key parameters in config file:
